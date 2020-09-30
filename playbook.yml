@@ -1,0 +1,21 @@
+- hosts: raspis
+  sudo: yes
+  tasks:
+    - name: install a list of packages
+      apt:
+        name:
+          - nginx
+          - transmission
+          - tmux
+          - vim
+
+    - name: Start service foo, based on running process /usr/bin/foo
+      service:
+        name: transmission
+        state: started
+
+    - name: Setup dotfiles
+      git:
+        repo: 'git@github.com:ktzar/dotfiles.git'
+        dest: /home/pi/dotfiles
+        update: no
